@@ -1,0 +1,19 @@
+html {
+  font-family: "Mr Bedfort Regular", "Great Vibes Regular", "Brush Script Std",
+    "Brush Script MT", cursive !important;
+  font-stretch: semi-expanded;
+  font-size: 110%;
+}
+
+body {
+  font-family: "Mr Bedfort Regular", "Great Vibes Regular", "Brush Script Std",
+    "Brush Script MT", cursive !important;
+  font-stretch: semi-expanded;
+  padding-bottom: 1.4rem;
+  padding-top: 3.75rem;
+}
+
+.body-content {
+  padding-left: 1.07rem;
+  padding-right: 1.07rem;
+}
