@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const BookList = ({ books }) => (
   <table className="table">
     <thead>
       <tr>
-        <th>Abbreviation</th>
-        <th>Name</th>
+        <th>Book</th>
       </tr>
     </thead>
     <tbody>
       {books.map(book => {
         return (
           <tr key={book.id}>
-            <td>{book.abbr}</td>
-            <td>{book.name}</td>
+            <td>
+              <Link to={`/book/${book.id}`}>{book.name}</Link>
+            </td>
           </tr>
         );
       })}

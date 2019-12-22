@@ -8,13 +8,13 @@ import configureMockStore from "redux-mock-store";
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe("Async Actions", () => {
+describe("Async Book Actions", () => {
   afterEach(() => {
     fetchMock.restore();
   });
 
   describe("Load Books thunk", () => {
-    it("should create BEGIN_API_CALL and LOAD_BOOKS_SUCCESS when loading books", () => {
+    it("should create BEGIN_API_CALL and LOAD_BOOKS_SUCCESS when loading books succeeds", () => {
       // arrange
       fetchMock.mock("*", {
         body: books,
@@ -27,7 +27,48 @@ describe("Async Actions", () => {
       ];
 
       const store = mockStore({ books: [] });
-      return store.dispatch(bookActions.loadBooks()).then(() => {
+
+      // act
+      return (
+        store
+          .dispatch(bookActions.loadBooks())
+          // assert
+          .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+          })
+      );
+    });
+    it("should throw appropriate error when loading books fails", () => {
+      // arrange
+      fetchMock.mock("*", {
+        status: 500
+      });
+
+      const store = mockStore({ books: [] });
+
+      // act
+      return (
+        store
+          .dispatch(bookActions.loadBooks())
+          // assert
+          .catch(error => {
+            expect(error.message).toEqual("Network response was not ok.");
+          })
+      );
+    });
+    it("should create BEGIN_API_CALL and API_CALL_ERROR when loading books fails", () => {
+      // arrange
+      fetchMock.mock("*", {
+        status: 500
+      });
+
+      const expectedActions = [
+        { type: types.BEGIN_API_CALL },
+        { type: types.API_CALL_ERROR }
+      ];
+
+      const store = mockStore({ books: [] });
+      return store.dispatch(bookActions.loadBooks()).catch(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });

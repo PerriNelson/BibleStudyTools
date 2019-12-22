@@ -5,6 +5,7 @@ import PageNotFound from "./PageNotFound";
 import HomePage from "./home/HomePage";
 import Header from "./common/Header";
 import BooksPage from "./books/BooksPage";
+import BookPage from "./books/BookPage";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/books/" component={BooksPage} />
+          <Route path="/book/:bookId" component={BookPage} />
           <Route component={PageNotFound} />
         </Switch>
       </div>
