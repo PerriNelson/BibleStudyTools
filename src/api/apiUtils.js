@@ -11,7 +11,6 @@ export async function handleResponse(response) {
 
 // Todo: Call an error logging service.
 export function handleError(error) {
-  // eslint-desable-nex-line no-console.
   console.error("API call failed. " + error);
   throw error;
 }
