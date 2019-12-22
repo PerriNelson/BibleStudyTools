@@ -6,7 +6,7 @@ import ChapterList from "./ChapterList";
 import Spinner from "../common/Spinner";
 import PropTypes from "prop-types";
 
-const BookPage = ({
+export const BookPage = ({
   books,
   chapters,
   loading,
